@@ -1,0 +1,4870 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Okun's Law Analysis - India (1998-2023)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            margin: 0 auto;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            background-size: 400px 400px;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 10;
+            padding: 60px 80px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+        }
+
+        .title-block {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .course-info {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 20px 28px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            flex-shrink: 0;
+        }
+
+        .course-text {
+            font-size: 16px;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .course-label {
+            font-size: 11px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 500px 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .icon-purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .icon-orange {
+            background: rgba(249, 115, 22, 0.1);
+            color: #f97316;
+        }
+
+        .info-text {
+            font-size: 16px;
+            color: #1e293b;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .info-label {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .visual-block {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-container {
+            width: 100%;
+            flex: 1;
+            min-height: 240px;
+            position: relative;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .footer-section {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .team-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .team-label {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .team-names {
+            font-size: 14px;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        .date-info {
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .decorative-element {
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 180px;
+            height: 180px;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 50%;
+            z-index: 5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="hero-bg">
+            <div class="hero-pattern"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="main-content">
+            <div class="header-section">
+                <div class="title-block">
+                    <h1 class="main-title">An Empirical Analysis of the Relationship Between GDP Growth and Unemployment
+                        in India (1998–2023): Testing Okun's Law</h1>
+                    <p class="subtitle">Testing the validity of Okun's Law using time-series econometric analysis</p>
+                </div>
+                <div class="course-info">
+                    <div class="course-label">Course</div>
+                    <div class="course-text">Introductory Econometrics</div>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="left-panel">
+                    <div class="info-card">
+                        <div class="info-row">
+                            <div class="info-icon icon-blue">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <div class="info-text">Software: GRETL</div>
+                                <div class="info-label">Econometric analysis tool</div>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-icon icon-green">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div>
+                                <div class="info-text">Data Source: World Bank Open Data</div>
+                                <div class="info-label">Annual data 1998-2023</div>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-icon icon-purple">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <div class="info-text">Time Period: 26 years</div>
+                                <div class="info-label">1998 to 2023</div>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-icon icon-orange">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <div class="info-text">Team Members: [Insert Names]</div>
+                                <div class="info-label">Roll Numbers: [Insert]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="visual-block">
+                        <div class="chart-container">
+                            <canvas id="gdpChart"></canvas>
+                        </div>
+                        <div class="stats-row">
+                            <div class="stat-item">
+                                <div class="stat-value">6.17%</div>
+                                <div class="stat-label">Avg Unemployment</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">-0.08</div>
+                                <div class="stat-label">GDP Coefficient</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">0.56</div>
+                                <div class="stat-label">R² Value</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section">
+            <div class="team-info">
+                <span class="team-label">Team:</span>
+                <span class="team-names">[Insert Team Members]</span>
+            </div>
+            <div class="date-info">April 2026</div>
+        </div>
+        <div class="decorative-element"></div>
+    </div>
+    <script>
+        const ctx = document.getElementById('gdpChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1998', '2003', '2008', '2013', '2018', '2023'],
+                datasets: [{
+                    label: 'GDP Growth (%)',
+                    data: [4.8, 7.2, 8.1, 6.5, 7.0, 5.8],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    pointRadius: 4,
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: 'Unemployment (%)',
+                    data: [7.2, 6.5, 5.8, 6.2, 5.5, 6.8],
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    borderWidth: 3,
+                    pointRadius: 4,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 13,
+                                family: 'Open Sans',
+                                weight: '600'
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(148, 163, 184, 0.1)'
+                        },
+                        ticks: {
+                            font: { size: 11 }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: { size: 11 }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+<script>
+function scaleSlides() {
+    const containers = document.querySelectorAll('.slide-container');
+    const windowWidth = window.innerWidth;
+    const targetWidth = 1280;
+    
+    // Calculate scale factor (max 1.0, so it doesn't scale up on large screens, only scales down on small ones)
+    // Add a small padding (e.g., 40px) to prevent it from touching the edges on small screens
+    const scale = Math.min(1, (windowWidth - 40) / targetWidth);
+    
+    containers.forEach(container => {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'top center';
+        
+        // Since CSS scale doesn't affect document flow size, we need to adjust the margin-bottom 
+        // so the next slide doesn't overlap. 720 is the fixed height of the slide.
+        const scaledHeight = 720 * scale;
+        const diff = scaledHeight - 720; 
+        
+        // Add 30px gap between slides
+        container.style.marginBottom = `${diff + 30}px`;
+    });
+}
+
+// Run on load and on resize
+window.addEventListener('resize', scaleSlides);
+document.addEventListener('DOMContentLoaded', scaleSlides);
+
+// Also run immediately just in case DOM is already loaded
+scaleSlides();
+</script>
+</body>
+
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Introduction &amp; Research Question</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            margin: 0 auto;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            padding: 40px 60px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .title-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .card-content {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: rgba(59, 130, 246, 0.05);
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+            margin-top: 16px;
+        }
+
+        .highlight-text {
+            font-size: 15px;
+            color: #1e293b;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .highlight-subtext {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .timeline-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            flex: 1.4;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 30px;
+        }
+
+        .timeline-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .timeline-range {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .timeline-container {
+            position: relative;
+            padding: 40px 10px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            right: 20px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            transform: translateY(-50%);
+        }
+
+        .timeline-points {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .timeline-point {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+        }
+
+        .point-marker {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid #3b82f6;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .point-year {
+            font-size: 14px;
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        .point-label {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .covid-marker {
+            position: absolute;
+            top: -10px;
+            left: 78%;
+            transform: translateX(-50%);
+            background: #fee2e2;
+            color: #ef4444;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid #fecaca;
+            white-space: nowrap;
+            z-index: 20;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .research-question {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            flex: 0.6;
+        }
+
+        .question-text {
+            font-size: 18px;
+            color: #1e293b;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .question-subtext {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .footer-right {
+            font-size: 14px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <div class="title-section">
+                    <h1 class="main-title">Introduction &amp; Research Question</h1>
+                    <p class="subtitle">Examining the relationship between GDP growth and unemployment in India</p>
+                </div>
+                <div class="badge">Okun's Law Analysis</div>
+            </div>
+            <div class="main-grid">
+                <div class="left-panel">
+                    <div class="info-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="card-title">Background</div>
+                        </div>
+                        <div class="card-content">
+                            <p>Unemployment and economic growth are the two most critical macroeconomic indicators for
+                                any developing economy. This study focuses on India, one of the world's fastest-growing
+                                economies, to analyze how changes in GDP growth affect unemployment rates.</p>
+                            <div class="highlight">
+                                <div class="highlight-text">Key Insight</div>
+                                <div class="highlight-subtext">GDP growth and unemployment are inversely related
+                                    according to Okun's Law</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-green">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="card-title">Theoretical Basis</div>
+                        </div>
+                        <div class="card-content">
+                            <p>Okun's Law posits an inverse relationship between GDP growth and unemployment. When
+                                output increases, firms hire more workers, leading to lower unemployment rates.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="timeline-section">
+                        <div class="timeline-header">
+                            <div class="timeline-title">Study Timeline (1998-2023)</div>
+                            <div class="timeline-range">26 years of data</div>
+                        </div>
+                        <div class="timeline-container">
+                            <div class="timeline-line"
+                                style="background: linear-gradient(to right, #3b82f6 80%, #e2e8f0 100%); height: 6px;">
+                            </div>
+                            <div class="covid-marker">COVID Impact</div>
+                            <div class="timeline-points">
+                                <div class="timeline-point">
+                                    <div class="point-marker"></div>
+                                    <div class="point-year">1998</div>
+                                    <div class="point-label">Start</div>
+                                </div>
+                                <div class="timeline-point">
+                                    <div class="point-marker"></div>
+                                    <div class="point-year">2008</div>
+                                    <div class="point-label">Crisis</div>
+                                </div>
+                                <div class="timeline-point">
+                                    <div class="point-marker" style="border-color: #ef4444;"></div>
+                                    <div class="point-year">2020</div>
+                                    <div class="point-label">COVID</div>
+                                </div>
+                                <div class="timeline-point">
+                                    <div class="point-marker" style="border-color: #e2e8f0;"></div>
+                                    <div class="point-year" style="color: #94a3b8;">2023</div>
+                                    <div class="point-label">End</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-value">26</div>
+                                <div class="stat-label">Years</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">Models</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">0.85</div>
+                                <div class="stat-label">R²</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="research-question">
+                        <div class="question-text">Research Question</div>
+                        <div class="question-subtext">Does an increase in GDP growth significantly reduce the
+                            unemployment rate in India? This study tests the validity of Okun's Law using annual
+                            time-series data from 1998 to 2023.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <i class="fas fa-database"></i>
+                    <span>Data Source: World Bank Open Data</span>
+                </div>
+                <div class="footer-right">
+                    <span>Page 2 of 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+function scaleSlides() {
+    const containers = document.querySelectorAll('.slide-container');
+    const windowWidth = window.innerWidth;
+    const targetWidth = 1280;
+    
+    // Calculate scale factor (max 1.0, so it doesn't scale up on large screens, only scales down on small ones)
+    // Add a small padding (e.g., 40px) to prevent it from touching the edges on small screens
+    const scale = Math.min(1, (windowWidth - 40) / targetWidth);
+    
+    containers.forEach(container => {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'top center';
+        
+        // Since CSS scale doesn't affect document flow size, we need to adjust the margin-bottom 
+        // so the next slide doesn't overlap. 720 is the fixed height of the slide.
+        const scaledHeight = 720 * scale;
+        const diff = scaledHeight - 720; 
+        
+        // Add 30px gap between slides
+        container.style.marginBottom = `${diff + 30}px`;
+    });
+}
+
+// Run on load and on resize
+window.addEventListener('resize', scaleSlides);
+document.addEventListener('DOMContentLoaded', scaleSlides);
+
+// Also run immediately just in case DOM is already loaded
+scaleSlides();
+</script>
+</body>
+
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Literature Review &amp; Objectives</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            margin: 0 auto;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            padding: 40px 60px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .title-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .icon-purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .icon-orange {
+            background: rgba(249, 115, 22, 0.1);
+            color: #f97316;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .card-content {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .equation-box {
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 10px;
+            padding: 16px;
+            border-left: 4px solid #3b82f6;
+            margin-top: 16px;
+        }
+
+        .equation-text {
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #1e293b;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .equation-desc {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .objectives-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .objective-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .objective-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .objective-text {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .model-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .model-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .model-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .model-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .model-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .model-desc {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .model-equation {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.05);
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            background: rgba(59, 130, 246, 0.03);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .footer-right {
+            font-size: 14px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <div class="title-section">
+                    <h1 class="main-title">Literature Review &amp; Objectives</h1>
+                    <p class="subtitle">Understanding Okun's Law and research methodology</p>
+                </div>
+                <div class="badge">Econometric Analysis</div>
+            </div>
+            <div class="main-grid">
+                <div class="left-panel">
+                    <div class="info-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="card-title">Okun's Law Theory</div>
+                        </div>
+                        <div class="card-content">
+                            <p>Okun's Law suggests an inverse relationship between GDP growth and unemployment. When
+                                output increases, firms hire more workers, leading to lower unemployment rates.</p>
+                            <div class="equation-box">
+                                <div class="equation-text">U_t = β₀ + β₁·GDP_t + u_t</div>
+                                <div class="equation-desc">Where U = Unemployment rate, GDP = GDP growth rate</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-green">
+                                <i class="fas fa-target"></i>
+                            </div>
+                            <div class="card-title">Research Objectives</div>
+                        </div>
+                        <div class="objectives-list">
+                            <div class="objective-item">
+                                <div class="objective-number">1</div>
+                                <div class="objective-text">To examine the growth-unemployment nexus in India
+                                    (1998-2023)</div>
+                            </div>
+                            <div class="objective-item">
+                                <div class="objective-number">2</div>
+                                <div class="objective-text">To estimate the impact using OLS and evaluate statistical
+                                    significance</div>
+                            </div>
+                            <div class="objective-item">
+                                <div class="objective-number">3</div>
+                                <div class="objective-text">To check model assumptions and improve specification using
+                                    COVID dummy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="model-section">
+                        <div>
+                            <div class="model-header">
+                                <div class="card-icon icon-purple">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <div class="model-title">Model Specifications</div>
+                            </div>
+                            <div class="model-grid">
+                                <div class="model-card">
+                                    <div class="model-name">Simple Model</div>
+                                    <div class="model-desc">Basic OLS regression without COVID adjustment</div>
+                                    <div class="model-equation">U_t = β₀ + β₁·GDP_t + u_t</div>
+                                </div>
+                                <div class="model-card">
+                                    <div class="model-name">Extended Model</div>
+                                    <div class="model-desc">Includes COVID dummy variable to account for 2020-21
+                                        structural break</div>
+                                    <div class="model-equation">U_t = β₀ + β₁·GDP_t + β₂·D_covid + u_t</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">26</div>
+                                <div class="stat-label">Years of Data</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">Models Tested</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">0.85</div>
+                                <div class="stat-label">Adjusted R²</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">5.49</div>
+                                <div class="stat-label">t-statistic</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <i class="fas fa-database"></i>
+                    <span>Data Source: World Bank Open Data (1998-2023)</span>
+                </div>
+                <div class="footer-right">
+                    <span>Page 3 of 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+function scaleSlides() {
+    const containers = document.querySelectorAll('.slide-container');
+    const windowWidth = window.innerWidth;
+    const targetWidth = 1280;
+    
+    // Calculate scale factor (max 1.0, so it doesn't scale up on large screens, only scales down on small ones)
+    // Add a small padding (e.g., 40px) to prevent it from touching the edges on small screens
+    const scale = Math.min(1, (windowWidth - 40) / targetWidth);
+    
+    containers.forEach(container => {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'top center';
+        
+        // Since CSS scale doesn't affect document flow size, we need to adjust the margin-bottom 
+        // so the next slide doesn't overlap. 720 is the fixed height of the slide.
+        const scaledHeight = 720 * scale;
+        const diff = scaledHeight - 720; 
+        
+        // Add 30px gap between slides
+        container.style.marginBottom = `${diff + 30}px`;
+    });
+}
+
+// Run on load and on resize
+window.addEventListener('resize', scaleSlides);
+document.addEventListener('DOMContentLoaded', scaleSlides);
+
+// Also run immediately just in case DOM is already loaded
+scaleSlides();
+</script>
+</body>
+
+
+</html>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Data Description</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            margin: 0 auto;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1280px;
+            height: 720px;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .title-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 580px 580px;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .left-panel,
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .icon-purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            background: rgba(59, 130, 246, 0.05);
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .data-table td {
+            padding: 14px 12px;
+            font-size: 15px;
+            color: #475569;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .variable-type {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .type-dependent {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .type-independent {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .type-dummy {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .visual-block {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-container {
+            width: 100%;
+            flex: 1;
+            min-height: 240px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 20px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .footer-right {
+            font-size: 14px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <div class="title-section">
+                    <h1 class="main-title">Data Description</h1>
+                    <p class="subtitle">Sample details, variables, and data source information</p>
+                </div>
+                <div class="badge">World Bank Data</div>
+            </div>
+            <div class="main-grid">
+                <div class="left-panel">
+                    <div class="info-card" style="height: 340px;">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="card-title">Sample Information</div>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Variable</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Unemployment Rate (%)</td>
+                                    <td><span class="variable-type type-dependent">Dependent</span></td>
+                                    <td>Total unemployment as % of labor force</td>
+                                </tr>
+                                <tr>
+                                    <td>GDP Growth (%)</td>
+                                    <td><span class="variable-type type-independent">Independent</span></td>
+                                    <td>Annual GDP growth rate</td>
+                                </tr>
+                                <tr>
+                                    <td>D_covid</td>
+                                    <td><span class="variable-type type-dummy">Dummy</span></td>
+                                    <td>1 for 2020-2021, 0 otherwise</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="info-card" style="flex: 1;">
+                        <div class="card-header">
+                            <div class="card-icon icon-green">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="card-title">Data Source &amp; Period</div>
+                        </div>
+                        <div style="font-size: 16px; color: #475569; line-height: 1.8;">
+                            <p><strong>Source:</strong> World Bank Open Data</p>
+                            <p><strong>Period:</strong> 1998-2023 (26 observations)</p>
+                            <p><strong>Frequency:</strong> Annual time-series data</p>
+                            <p><strong>Country:</strong> India</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">26</div>
+                            <div class="stat-label">Years of Data</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Variables</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1998</div>
+                            <div class="stat-label">Start Year</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">2023</div>
+                            <div class="stat-label">End Year</div>
+                        </div>
+                    </div>
+                    <div class="visual-block">
+                        <div class="card-header" style="margin-bottom: 10px;">
+                            <div class="card-icon icon-purple">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="card-title">Data Trends</div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="trendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Data quality verified for econometric analysis</span>
+                </div>
+                <div class="footer-right">
+                    <span>Page 4 of 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('trendChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1998', '2003', '2008', '2013', '2018', '2023'],
+                datasets: [{
+                    label: 'Unemployment (%)',
+                    data: [7.2, 6.5, 5.8, 6.2, 5.5, 6.8],
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.05)',
+                    borderWidth: 3,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#ef4444',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: 'GDP Growth (%)',
+                    data: [4.8, 7.2, 8.1, 6.5, 7.0, 5.8],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.05)',
+                    borderWidth: 3,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#3b82f6',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        align: 'end',
+                        labels: {
+                            boxWidth: 20,
+                            padding: 20,
+                            font: { size: 12, family: 'Open Sans', weight: '600' }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                        ticks: { font: { size: 11, family: 'Open Sans' } }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { size: 11, family: 'Open Sans' } }
+                    }
+                }
+            }
+        });
+    </script>
+
+<script>
+function scaleSlides() {
+    const containers = document.querySelectorAll('.slide-container');
+    const windowWidth = window.innerWidth;
+    const targetWidth = 1280;
+    
+    // Calculate scale factor (max 1.0, so it doesn't scale up on large screens, only scales down on small ones)
+    // Add a small padding (e.g., 40px) to prevent it from touching the edges on small screens
+    const scale = Math.min(1, (windowWidth - 40) / targetWidth);
+    
+    containers.forEach(container => {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'top center';
+        
+        // Since CSS scale doesn't affect document flow size, we need to adjust the margin-bottom 
+        // so the next slide doesn't overlap. 720 is the fixed height of the slide.
+        const scaledHeight = 720 * scale;
+        const diff = scaledHeight - 720; 
+        
+        // Add 30px gap between slides
+        container.style.marginBottom = `${diff + 30}px`;
+    });
+}
+
+// Run on load and on resize
+window.addEventListener('resize', scaleSlides);
+document.addEventListener('DOMContentLoaded', scaleSlides);
+
+// Also run immediately just in case DOM is already loaded
+scaleSlides();
+</script>
+</body>
+
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Methodology</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            margin: 0 auto;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1280px;
+            height: 720px;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .title-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 22px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 630px 530px;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .icon-purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .icon-orange {
+            background: rgba(249, 115, 22, 0.1);
+            color: #f97316;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .model-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .model-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .model-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .model-desc {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .model-equation {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.05);
+            padding: 12px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: center;
+            border: 1px dashed rgba(59, 130, 246, 0.2);
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .workflow-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            height: 520px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .workflow-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .workflow-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 14px;
+            background: rgba(59, 130, 246, 0.03);
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .hypothesis-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .hypothesis-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+            min-height: 100px;
+        }
+
+        .hypothesis-label {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .hypothesis-text {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: rgba(59, 130, 246, 0.03);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 2px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: auto;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .footer-right {
+            font-size: 14px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <div class="title-section">
+                    <h1 class="main-title">Methodology</h1>
+                    <p class="subtitle">Estimation approach, model specifications, and hypothesis testing</p>
+                </div>
+                <div class="badge">GRETL Analysis</div>
+            </div>
+            <div class="main-grid">
+                <div class="left-panel">
+                    <!-- Model Specifications Card -->
+                    <div class="info-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="card-title">Model Specifications</div>
+                        </div>
+                        <div class="model-grid">
+                            <div class="model-card">
+                                <div class="model-header">
+                                    <div class="card-icon icon-green"
+                                        style="width: 32px; height: 32px; font-size: 14px;">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="model-name">Simple Model</div>
+                                </div>
+                                <div class="model-desc">Basic OLS regression without COVID adjustment</div>
+                                <div class="model-equation">U_t = β₀ + β₁·GDP_t + u_t</div>
+                            </div>
+                            <div class="model-card">
+                                <div class="model-header">
+                                    <div class="card-icon icon-purple"
+                                        style="width: 32px; height: 32px; font-size: 14px;">
+                                        <i class="fas fa-virus"></i>
+                                    </div>
+                                    <div class="model-name">Extended Model</div>
+                                </div>
+                                <div class="model-desc">Includes COVID dummy variable</div>
+                                <div class="model-equation">U_t = β₀ + β₁·GDP_t + β₂·D_covid + u_t</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hypothesis Testing Card -->
+                    <div class="info-card"
+                        style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                        <div class="card-header">
+                            <div class="card-icon icon-orange">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="card-title">Hypothesis Testing</div>
+                        </div>
+                        <div class="hypothesis-content">
+                            <div class="hypothesis-item">
+                                <div class="hypothesis-label">H₀: β₁ = 0</div>
+                                <div class="hypothesis-text">No significant relationship between GDP growth and
+                                    unemployment</div>
+                            </div>
+                            <div class="hypothesis-item">
+                                <div class="hypothesis-label">H₁: β₁ &lt; 0</div>
+                                <div class="hypothesis-text">Inverse relationship (Okun's Law holds)</div>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">5.49</div>
+                                <div class="stat-label">t-statistic</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">0.0000</div>
+                                <div class="stat-label">p-value</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">0.56</div>
+                                <div class="stat-label">R²</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="workflow-section">
+                        <div class="workflow-header">
+                            <div class="card-icon icon-blue">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="workflow-title">GRETL Workflow</div>
+                        </div>
+                        <div class="workflow-steps">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Data Import</div>
+                                    <div class="step-desc">Import Excel data into GRETL with proper variable naming
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">Create COVID Dummy</div>
+                                    <div class="step-desc">Define D_covid = 1 for 2020-2021, 0 otherwise</div>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Run OLS Regressions</div>
+                                    <div class="step-desc">Estimate both Simple and Extended models</div>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Diagnostic Testing</div>
+                                    <div class="step-desc">Check autocorrelation, heteroskedasticity, residuals</div>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <div class="step-title">Model Validation</div>
+                                    <div class="step-desc">Evaluate coefficients, p-values, and R²</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Estimation method: Ordinary Least Squares (OLS)</span>
+                </div>
+                <div class="footer-right">
+                    <span>Page 5 of 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+function scaleSlides() {
+    const containers = document.querySelectorAll('.slide-container');
+    const windowWidth = window.innerWidth;
+    const targetWidth = 1280;
+    
+    // Calculate scale factor (max 1.0, so it doesn't scale up on large screens, only scales down on small ones)
+    // Add a small padding (e.g., 40px) to prevent it from touching the edges on small screens
+    const scale = Math.min(1, (windowWidth - 40) / targetWidth);
+    
+    containers.forEach(container => {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'top center';
+        
+        // Since CSS scale doesn't affect document flow size, we need to adjust the margin-bottom 
+        // so the next slide doesn't overlap. 720 is the fixed height of the slide.
+        const scaledHeight = 720 * scale;
+        const diff = scaledHeight - 720; 
+        
+        // Add 30px gap between slides
+        container.style.marginBottom = `${diff + 30}px`;
+    });
+}
+
+// Run on load and on resize
+window.addEventListener('resize', scaleSlides);
+document.addEventListener('DOMContentLoaded', scaleSlides);
+
+// Also run immediately just in case DOM is already loaded
+scaleSlides();
+</script>
+</body>
+
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Visualizing the Data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            margin: 0 auto;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1280px;
+            height: 720px;
+            padding: 40px 60px 25px 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .title-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex: 1;
+            margin-bottom: 30px;
+        }
+
+        .left-panel,
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .chart-container {
+            flex: 1;
+            position: relative;
+            min-height: 220px;
+        }
+
+        .covid-highlight {
+            background: rgba(239, 68, 68, 0.05);
+            border-radius: 8px;
+            padding: 14px 18px;
+            border-left: 4px solid #ef4444;
+            margin-top: 15px;
+        }
+
+        .covid-text {
+            font-size: 14px;
+            color: #1e293b;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .covid-desc {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .scatter-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px 16px;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 6px;
+        }
+
+        .scatter-text {
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .correlation {
+            font-size: 15px;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #cbd5e1;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .footer-right {
+            font-size: 13px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <div class="title-section">
+                    <h1 class="main-title">Visualizing the Data</h1>
+                    <p class="subtitle">Time-series trends and scatter plot analysis (1998-2023)</p>
+                </div>
+                <div class="badge">Data Visualization</div>
+            </div>
+            <div class="main-grid">
+                <div class="left-panel">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="card-title">GDP Growth &amp; Unemployment Trends</div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="trendChart2"></canvas>
+                        </div>
+                        <div class="covid-highlight">
+                            <div class="covid-text"><i class="fas fa-exclamation-triangle"
+                                    style="color: #ef4444; margin-right: 8px;"></i>COVID-19 Impact (2020-2021)</div>
+                            <div class="covid-desc">Significant spike in unemployment and GDP volatility during pandemic
+                                period</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-green">
+                                <i class="fas fa-chart-scatter"></i>
+                            </div>
+                            <div class="card-title">Scatter Plot: GDP vs Unemployment</div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="scatterChart"></canvas>
+                        </div>
+                        <div class="scatter-info">
+                            <span class="scatter-text">Negative correlation: -0.75</span>
+                            <span class="correlation">R² = 0.56</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">-0.08</div>
+                    <div class="stat-label">GDP Coefficient</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">6.17%</div>
+                    <div class="stat-label">Avg Unemployment</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5.49</div>
+                    <div class="stat-label">t-statistic</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0.0000</div>
+                    <div class="stat-label">p-value</div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <i class="fas fa-database"></i>
+                    <span>Source: World Bank Open Data (1998-2023)</span>
+                </div>
+                <div class="footer-right">
+                    <span>Page 6 of 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const ctx1 = document.getElementById('trendChart2').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['1998', '2000', '2002', '2004', '2006', '2008', '2010', '2012', '2014', '2016', '2018', '2020', '2022', '2023'],
+                datasets: [{
+                    label: 'GDP Growth (%)',
+                    data: [4.8, 5.2, 3.8, 7.2, 8.1, 6.5, 8.5, 5.2, 6.8, 7.0, 6.5, -5.8, 9.1, 5.8],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#3b82f6',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: 'Unemployment (%)',
+                    data: [7.2, 6.8, 7.5, 6.5, 5.8, 6.2, 5.5, 6.8, 6.2, 5.8, 5.5, 8.1, 6.8, 6.5],
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    borderWidth: 3,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#ef4444',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        align: 'end',
+                        labels: {
+                            boxWidth: 15,
+                            padding: 10,
+                            font: { size: 12, family: 'Open Sans', weight: '600' }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                        ticks: { font: { size: 11 } }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { size: 11 } }
+                    }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('scatterChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Data Points',
+                    data: [
+                        { x: 4.8, y: 7.2 }, { x: 5.2, y: 6.8 }, { x: 3.8, y: 7.5 }, { x: 7.2, y: 6.5 },
+                        { x: 8.1, y: 5.8 }, { x: 6.5, y: 6.2 }, { x: 8.5, y: 5.5 }, { x: 5.2, y: 6.8 },
+                        { x: 6.8, y: 6.2 }, { x: 7.0, y: 5.8 }, { x: 6.5, y: 5.5 }, { x: -5.8, y: 8.1 },
+                        { x: 9.1, y: 6.8 }, { x: 5.8, y: 6.5 }
+                    ],
+                    backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                    borderColor: '#3b82f6',
+                    borderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        title: {
+                            display: true,
+                            text: 'GDP Growth (%)',
+                            font: { size: 12, weight: '600' }
+                        },
+                        grid: { color: 'rgba(148, 163, 184, 0.1)' }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Unemployment (%)',
+                            font: { size: 12, weight: '600' }
+                        },
+                        grid: { color: 'rgba(148, 163, 184, 0.1)' }
+                    }
+                }
+            }
+        });
+    </script>
+
+<script>
+function scaleSlides() {
+    const containers = document.querySelectorAll('.slide-container');
+    const windowWidth = window.innerWidth;
+    const targetWidth = 1280;
+    
+    // Calculate scale factor (max 1.0, so it doesn't scale up on large screens, only scales down on small ones)
+    // Add a small padding (e.g., 40px) to prevent it from touching the edges on small screens
+    const scale = Math.min(1, (windowWidth - 40) / targetWidth);
+    
+    containers.forEach(container => {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'top center';
+        
+        // Since CSS scale doesn't affect document flow size, we need to adjust the margin-bottom 
+        // so the next slide doesn't overlap. 720 is the fixed height of the slide.
+        const scaledHeight = 720 * scale;
+        const diff = scaledHeight - 720; 
+        
+        // Add 30px gap between slides
+        container.style.marginBottom = `${diff + 30}px`;
+    });
+}
+
+// Run on load and on resize
+window.addEventListener('resize', scaleSlides);
+document.addEventListener('DOMContentLoaded', scaleSlides);
+
+// Also run immediately just in case DOM is already loaded
+scaleSlides();
+</script>
+</body>
+
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Results - Simple OLS Model</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            margin: 0 auto;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1280px;
+            height: 720px;
+            padding: 40px 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .title-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex: 1;
+            margin-bottom: 25px;
+        }
+
+        .left-panel,
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .results-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .equation-box {
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 10px;
+            padding: 24px;
+            border-left: 4px solid #3b82f6;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .equation-text {
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            color: #1e293b;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .equation-desc {
+            font-size: 14px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 18px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .stat-sub {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .interpretation-box {
+            background: rgba(16, 185, 129, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #10b981;
+        }
+
+        .interpretation-text {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .interpretation-highlight {
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .key-findings {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .finding-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .finding-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .finding-text {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .finding-highlight {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: auto;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .footer-right {
+            font-size: 13px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <div class="title-section">
+                    <h1 class="main-title">Results - Simple OLS Model</h1>
+                    <p class="subtitle">Key statistics and interpretation of the regression analysis</p>
+                </div>
+                <div class="badge">Regression Analysis</div>
+            </div>
+            <div class="main-grid">
+                <div class="left-panel">
+                    <div class="results-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="card-title">Regression Equation</div>
+                        </div>
+                        <div class="equation-box">
+                            <div class="equation-text">Unemployment = 6.17 - 0.08 × GDP</div>
+                            <div class="equation-desc">Where GDP is the annual GDP growth rate (%)</div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-value">-0.08</div>
+                                <div class="stat-label">GDP Coefficient</div>
+                                <div class="stat-sub">t = -5.49, p = 0.0000</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">0.56</div>
+                                <div class="stat-label">R²</div>
+                                <div class="stat-sub">56% variance explained</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">1.19</div>
+                                <div class="stat-label">Durbin-Watson</div>
+                                <div class="stat-sub">No autocorrelation</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">26</div>
+                                <div class="stat-label">Observations</div>
+                                <div class="stat-sub">Years: 1998-2023</div>
+                            </div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="interpretation-text">
+                                <span class="interpretation-highlight">Key Finding:</span> Higher GDP growth is
+                                associated with lower unemployment, confirming Okun's Law. The coefficient of -0.08
+                                indicates that a 1% increase in GDP growth reduces unemployment by approximately 0.08
+                                percentage points.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="results-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-green">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="card-title">Key Findings</div>
+                        </div>
+                        <div class="key-findings">
+                            <div class="finding-item">
+                                <div class="finding-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="finding-text">
+                                    <span class="finding-highlight">Significant negative relationship:</span> GDP growth
+                                    has a statistically significant negative effect on unemployment (p = 0.0000).
+                                </div>
+                            </div>
+                            <div class="finding-item">
+                                <div class="finding-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <div class="finding-text">
+                                    <span class="finding-highlight">Model fit:</span> The model explains 56% of the
+                                    variance in unemployment rates (R² = 0.56).
+                                </div>
+                            </div>
+                            <div class="finding-item">
+                                <div class="finding-icon">
+                                    <i class="fas fa-arrow-down"></i>
+                                </div>
+                                <div class="finding-text">
+                                    <span class="finding-highlight">Effect size:</span> A 1% increase in GDP growth
+                                    reduces unemployment by 0.08 percentage points.
+                                </div>
+                            </div>
+                            <div class="finding-item">
+                                <div class="finding-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="finding-text">
+                                    <span class="finding-highlight">No autocorrelation:</span> Durbin-Watson statistic
+                                    of 1.19 indicates no severe autocorrelation.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <i class="fas fa-database"></i>
+                    <span>Source: World Bank Open Data (1998-2023)</span>
+                </div>
+                <div class="footer-right">
+                    <span>Page 7 of 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+function scaleSlides() {
+    const containers = document.querySelectorAll('.slide-container');
+    const windowWidth = window.innerWidth;
+    const targetWidth = 1280;
+    
+    // Calculate scale factor (max 1.0, so it doesn't scale up on large screens, only scales down on small ones)
+    // Add a small padding (e.g., 40px) to prevent it from touching the edges on small screens
+    const scale = Math.min(1, (windowWidth - 40) / targetWidth);
+    
+    containers.forEach(container => {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'top center';
+        
+        // Since CSS scale doesn't affect document flow size, we need to adjust the margin-bottom 
+        // so the next slide doesn't overlap. 720 is the fixed height of the slide.
+        const scaledHeight = 720 * scale;
+        const diff = scaledHeight - 720; 
+        
+        // Add 30px gap between slides
+        container.style.marginBottom = `${diff + 30}px`;
+    });
+}
+
+// Run on load and on resize
+window.addEventListener('resize', scaleSlides);
+document.addEventListener('DOMContentLoaded', scaleSlides);
+
+// Also run immediately just in case DOM is already loaded
+scaleSlides();
+</script>
+</body>
+
+
+</html>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Results - Extended Model (COVID Dummy)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            margin: 0 auto;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1280px;
+            height: 720px;
+            padding: 40px 50px 25px 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .title-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            height: 520px;
+            margin-bottom: 20px;
+        }
+
+        .left-panel,
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .results-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .icon-purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .icon-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .equation-box {
+            background: rgba(139, 92, 246, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #8b5cf6;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .equation-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: #1e293b;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .equation-desc {
+            font-size: 13px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 15px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .stat-sub {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .improvement-box {
+            background: rgba(16, 185, 129, 0.05);
+            border-radius: 10px;
+            padding: 16px;
+            border-left: 4px solid #10b981;
+            margin-top: auto;
+        }
+
+        .improvement-text {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .improvement-highlight {
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .covid-impact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .impact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .impact-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(249, 115, 22, 0.1);
+            color: #f97316;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .impact-text {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .impact-highlight {
+            color: #f97316;
+            font-weight: 600;
+        }
+
+        .r2-comparison {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: auto;
+            padding: 16px;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 8px;
+        }
+
+        .r2-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .r2-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .r2-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .r2-change {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: auto;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .footer-right {
+            font-size: 13px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <div class="title-section">
+                    <h1 class="main-title">Results - Extended Model (COVID Dummy)</h1>
+                    <p class="subtitle">Improved model specification with COVID-19 impact analysis</p>
+                </div>
+                <div class="badge">Extended OLS</div>
+            </div>
+            <div class="main-grid">
+                <div class="left-panel">
+                    <div class="results-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-purple">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="card-title">Regression Equation</div>
+                        </div>
+                        <div class="equation-box">
+                            <div class="equation-text">Unemployment = 5.90 - 0.05×GDP + 0.81×D<sub>covid</sub></div>
+                            <div class="equation-desc">Where D<sub>covid</sub> = 1 for 2020-2021, 0 otherwise</div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-value">-0.05</div>
+                                <div class="stat-label">GDP Coefficient</div>
+                                <div class="stat-sub">t = -4.90, p = 0.0001</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">0.81</div>
+                                <div class="stat-label">COVID Coefficient</div>
+                                <div class="stat-sub">t = 6.87, p = 0.0000</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">0.85</div>
+                                <div class="stat-label">R²</div>
+                                <div class="stat-sub">85% variance explained</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">1.08</div>
+                                <div class="stat-label">Durbin-Watson</div>
+                                <div class="stat-sub">No autocorrelation</div>
+                            </div>
+                        </div>
+                        <div class="improvement-box">
+                            <div class="improvement-text">
+                                <span class="improvement-highlight">Model Improvement:</span> R² increased from 0.56 to
+                                0.85, indicating the COVID dummy significantly improves model fit by explaining an
+                                additional 29% of variance.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="results-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-green">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="card-title">COVID Impact Analysis</div>
+                        </div>
+                        <div class="covid-impact">
+                            <div class="impact-item">
+                                <div class="impact-icon">
+                                    <i class="fas fa-virus"></i>
+                                </div>
+                                <div class="impact-text">
+                                    <span class="impact-highlight">COVID Dummy:</span> Significant positive effect
+                                    (0.81) on unemployment during 2020-2021.
+                                </div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="impact-icon">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                                <div class="impact-text">
+                                    <span class="impact-highlight">Unemployment Spike:</span> COVID-19 increased
+                                    unemployment by 0.81 percentage points.
+                                </div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="impact-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="impact-text">
+                                    <span class="impact-highlight">Statistical Significance:</span> t = 6.87, p = 0.0000
+                                    (highly significant).
+                                </div>
+                            </div>
+                            <div class="r2-comparison">
+                                <div class="r2-item">
+                                    <div class="r2-label">Simple Model</div>
+                                    <div class="r2-value">0.56</div>
+                                </div>
+                                <div class="r2-change">→</div>
+                                <div class="r2-item">
+                                    <div class="r2-label">Extended Model</div>
+                                    <div class="r2-value">0.85</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <i class="fas fa-database"></i>
+                    <span>Source: World Bank Open Data (1998-2023)</span>
+                </div>
+                <div class="footer-right">
+                    <span>Page 8 of 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+function scaleSlides() {
+    const containers = document.querySelectorAll('.slide-container');
+    const windowWidth = window.innerWidth;
+    const targetWidth = 1280;
+    
+    // Calculate scale factor (max 1.0, so it doesn't scale up on large screens, only scales down on small ones)
+    // Add a small padding (e.g., 40px) to prevent it from touching the edges on small screens
+    const scale = Math.min(1, (windowWidth - 40) / targetWidth);
+    
+    containers.forEach(container => {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'top center';
+        
+        // Since CSS scale doesn't affect document flow size, we need to adjust the margin-bottom 
+        // so the next slide doesn't overlap. 720 is the fixed height of the slide.
+        const scaledHeight = 720 * scale;
+        const diff = scaledHeight - 720; 
+        
+        // Add 30px gap between slides
+        container.style.marginBottom = `${diff + 30}px`;
+    });
+}
+
+// Run on load and on resize
+window.addEventListener('resize', scaleSlides);
+document.addEventListener('DOMContentLoaded', scaleSlides);
+
+// Also run immediately just in case DOM is already loaded
+scaleSlides();
+</script>
+</body>
+
+
+</html>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Diagnostics &amp; Limitations</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            margin: 0 auto;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1280px;
+            height: 720px;
+            padding: 40px 50px 20px 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .title-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            margin-top: 10px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 580px 580px;
+            gap: 20px;
+            flex: 1;
+            margin-bottom: 15px;
+        }
+
+        .left-panel,
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .diagnostics-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            height: 540px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .icon-orange {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .diagnostics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .diagnostic-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 14px 16px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .diagnostic-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .diagnostic-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .diagnostic-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .diagnostic-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .diagnostic-status {
+            font-size: 13px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-icon {
+            font-size: 11px;
+        }
+
+        .status-pass {
+            color: #10b981;
+        }
+
+        .limitations-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .limitation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .limitation-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .limitation-text {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .limitation-highlight {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .residual-chart {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+            flex: 1;
+            min-height: 180px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #cbd5e1;
+            margin-top: auto;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .footer-right {
+            font-size: 14px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <div class="title-section">
+                    <h1 class="main-title">Diagnostics &amp; Limitations</h1>
+                    <p class="subtitle">Model validation, diagnostic tests, and research limitations</p>
+                </div>
+                <div class="badge">Model Validation</div>
+            </div>
+            <div class="main-grid">
+                <div class="left-panel">
+                    <div class="diagnostics-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <div class="card-title">Diagnostic Tests</div>
+                        </div>
+                        <div class="diagnostics-grid">
+                            <div class="diagnostic-item">
+                                <div class="diagnostic-header">
+                                    <div class="diagnostic-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="diagnostic-label">Durbin-Watson</div>
+                                </div>
+                                <div class="diagnostic-value">1.08 - 1.19</div>
+                                <div class="diagnostic-status">
+                                    <i class="fas fa-check-circle status-icon status-pass"></i>
+                                    <span>No severe autocorrelation</span>
+                                </div>
+                            </div>
+                            <div class="diagnostic-item">
+                                <div class="diagnostic-header">
+                                    <div class="diagnostic-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="diagnostic-label">Residual Analysis</div>
+                                </div>
+                                <div class="diagnostic-value">No clear pattern</div>
+                                <div class="diagnostic-status">
+                                    <i class="fas fa-check-circle status-icon status-pass"></i>
+                                    <span>Model adequacy confirmed</span>
+                                </div>
+                            </div>
+                            <div class="diagnostic-item">
+                                <div class="diagnostic-header">
+                                    <div class="diagnostic-icon">
+                                        <i class="fas fa-balance-scale"></i>
+                                    </div>
+                                    <div class="diagnostic-label">Heteroskedasticity</div>
+                                </div>
+                                <div class="diagnostic-value">BP test: p &gt; 0.05</div>
+                                <div class="diagnostic-status">
+                                    <i class="fas fa-check-circle status-icon status-pass"></i>
+                                    <span>No strong evidence</span>
+                                </div>
+                            </div>
+                            <div class="diagnostic-item">
+                                <div class="diagnostic-header">
+                                    <div class="diagnostic-icon">
+                                        <i class="fas fa-chart-bar"></i>
+                                    </div>
+                                    <div class="diagnostic-label">Normality</div>
+                                </div>
+                                <div class="diagnostic-value">Jarque-Bera: p &gt; 0.05</div>
+                                <div class="diagnostic-status">
+                                    <i class="fas fa-check-circle status-icon status-pass"></i>
+                                    <span>Residuals normal</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="residual-chart">
+                            <canvas id="residualChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="diagnostics-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-orange">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="card-title">Research Limitations</div>
+                        </div>
+                        <div class="limitations-list">
+                            <div class="limitation-item">
+                                <div class="limitation-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="limitation-text">
+                                    <span class="limitation-highlight">Informal Sector:</span> Unemployment data may not
+                                    fully capture India's large informal sector dynamics, potentially understating true
+                                    unemployment levels.
+                                </div>
+                            </div>
+                            <div class="limitation-item">
+                                <div class="limitation-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="limitation-text">
+                                    <span class="limitation-highlight">Small Sample:</span> Only 26 observations
+                                    (1998-2023) with limited degrees of freedom for robust statistical inference.
+                                </div>
+                            </div>
+                            <div class="limitation-item">
+                                <div class="limitation-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="limitation-text">
+                                    <span class="limitation-highlight">Omitted Variables:</span> Education levels,
+                                    policy shifts, and sectoral composition not included in the model.
+                                </div>
+                            </div>
+                            <div class="limitation-item">
+                                <div class="limitation-icon">
+                                    <i class="fas fa-ruler"></i>
+                                </div>
+                                <div class="limitation-text">
+                                    <span class="limitation-highlight">Measurement Issues:</span> Potential
+                                    inconsistencies in macroeconomic indicator definitions over time.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Results pass basic checks but should be interpreted with caution</span>
+                </div>
+                <div class="footer-right">
+                    <span>Page 9 of 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('residualChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Residuals',
+                    data: [
+                        { x: 0, y: -0.9 }, { x: 1, y: -0.45 }, { x: 2, y: -0.5 }, { x: 3, y: -0.7 },
+                        { x: 4, y: -0.85 }, { x: 5, y: -0.25 }, { x: 6, y: 0.72 }, { x: 7, y: 0.48 },
+                        { x: 8, y: 0.35 }, { x: 9, y: 0.65 }, { x: 10, y: 0.18 }, { x: 11, y: 0.05 },
+                        { x: 12, y: -0.35 }, { x: 13, y: -0.32 }, { x: 14, y: -0.02 }, { x: 15, y: -0.35 },
+                        { x: 16, y: 0.1 }, { x: 17, y: 0.32 }, { x: 18, y: 0.82 }, { x: 19, y: 1.0 },
+                        { x: 20, y: -0.88 }, { x: 21, y: 0.9 }, { x: 22, y: -0.7 }, { x: 23, y: -0.3 },
+                        { x: 24, y: -0.6 }, { x: 25, y: 0.15 }
+                    ],
+                    backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                    borderColor: '#3b82f6',
+                    borderWidth: 1.5,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Observation',
+                            font: { size: 11, weight: '600' },
+                            padding: { top: 0 }
+                        },
+                        grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                        ticks: { font: { size: 10 } }
+                    },
+                    y: {
+                        min: -1.2,
+                        max: 1.2,
+                        title: {
+                            display: true,
+                            text: 'Residual',
+                            font: { size: 11, weight: '600' },
+                            padding: { bottom: 0 }
+                        },
+                        grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                        ticks: { font: { size: 10 } }
+                    }
+                }
+            }
+        });
+    </script>
+
+<script>
+function scaleSlides() {
+    const containers = document.querySelectorAll('.slide-container');
+    const windowWidth = window.innerWidth;
+    const targetWidth = 1280;
+    
+    // Calculate scale factor (max 1.0, so it doesn't scale up on large screens, only scales down on small ones)
+    // Add a small padding (e.g., 40px) to prevent it from touching the edges on small screens
+    const scale = Math.min(1, (windowWidth - 40) / targetWidth);
+    
+    containers.forEach(container => {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'top center';
+        
+        // Since CSS scale doesn't affect document flow size, we need to adjust the margin-bottom 
+        // so the next slide doesn't overlap. 720 is the fixed height of the slide.
+        const scaledHeight = 720 * scale;
+        const diff = scaledHeight - 720; 
+        
+        // Add 30px gap between slides
+        container.style.marginBottom = `${diff + 30}px`;
+    });
+}
+
+// Run on load and on resize
+window.addEventListener('resize', scaleSlides);
+document.addEventListener('DOMContentLoaded', scaleSlides);
+
+// Also run immediately just in case DOM is already loaded
+scaleSlides();
+</script>
+</body>
+
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Conclusion</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8fafc;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            margin: 0 auto;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1280px;
+            height: 720px;
+            padding: 40px 50px 30px 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .title-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex: 1;
+            margin-bottom: 25px;
+        }
+
+        .left-panel,
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .conclusion-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .icon-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .key-findings {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .finding-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .finding-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .finding-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .finding-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .finding-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .finding-desc {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .summary-box {
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #3b82f6;
+            margin-top: auto;
+        }
+
+        .summary-text {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .summary-highlight {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .policy-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .policy-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .policy-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .policy-text {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .policy-highlight {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .r2-comparison {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            margin-top: auto;
+        }
+
+        .r2-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .r2-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .r2-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .r2-change-arrow {
+            font-size: 18px;
+            color: #94a3b8;
+        }
+
+        .r2-change-percent {
+            font-size: 15px;
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .footer-right {
+            font-size: 13px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <div class="header">
+                <div class="title-section">
+                    <h1 class="main-title">Conclusion</h1>
+                    <p class="subtitle">Key findings and policy implications for India's economy</p>
+                </div>
+                <div class="badge">Final Summary</div>
+            </div>
+            <div class="main-grid">
+                <div class="left-panel">
+                    <div class="conclusion-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-green">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="card-title">Key Findings</div>
+                        </div>
+                        <div class="key-findings">
+                            <div class="finding-item">
+                                <div class="finding-header">
+                                    <div class="finding-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="finding-label">Okun's Law Validated</div>
+                                </div>
+                                <div class="finding-value">-0.08</div>
+                                <div class="finding-desc">Statistically significant negative relationship between GDP
+                                    growth and unemployment</div>
+                            </div>
+                            <div class="finding-item">
+                                <div class="finding-header">
+                                    <div class="finding-icon">
+                                        <i class="fas fa-percentage"></i>
+                                    </div>
+                                    <div class="finding-label">Model Fit</div>
+                                </div>
+                                <div class="finding-value">0.85</div>
+                                <div class="finding-desc">R² improved from 0.56 to 0.85 with COVID dummy</div>
+                            </div>
+                            <div class="finding-item">
+                                <div class="finding-header">
+                                    <div class="finding-icon">
+                                        <i class="fas fa-virus"></i>
+                                    </div>
+                                    <div class="finding-label">COVID Impact</div>
+                                </div>
+                                <div class="finding-value">+0.81</div>
+                                <div class="finding-desc">Significant pandemic effect on unemployment (2020-2021)</div>
+                            </div>
+                            <div class="finding-item">
+                                <div class="finding-header">
+                                    <div class="finding-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="finding-label">Structural Factors</div>
+                                </div>
+                                <div class="finding-value">Important</div>
+                                <div class="finding-desc">Beyond GDP, other factors influence unemployment</div>
+                            </div>
+                        </div>
+                        <div class="summary-box">
+                            <div class="summary-text">
+                                <span class="summary-highlight">Summary:</span> The analysis confirms Okun's Law for
+                                India, showing a modest negative relationship between GDP growth and unemployment. The
+                                COVID-19 dummy significantly improved model fit, explaining an additional 29% of
+                                variance.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="conclusion-card">
+                        <div class="card-header">
+                            <div class="card-icon icon-blue">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="card-title">Policy Implications</div>
+                        </div>
+                        <div class="policy-section">
+                            <div class="policy-item">
+                                <div class="policy-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="policy-text">
+                                    <span class="policy-highlight">Growth Strategy:</span> Focus on GDP growth to reduce
+                                    unemployment, but recognize the modest effect size (-0.08 coefficient).
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <div class="policy-icon">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <div class="policy-text">
+                                    <span class="policy-highlight">Structural Reforms:</span> Address informal sector
+                                    dynamics and sectoral composition for comprehensive unemployment reduction.
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <div class="policy-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="policy-text">
+                                    <span class="policy-highlight">Crisis Preparedness:</span> Implement policies to
+                                    mitigate economic shocks like COVID-19's impact on employment.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="r2-comparison">
+                            <div class="r2-item">
+                                <div class="r2-label">Simple Model</div>
+                                <div class="r2-value">0.56</div>
+                            </div>
+                            <div class="r2-change-arrow">→</div>
+                            <div class="r2-item">
+                                <div class="r2-label">Extended Model</div>
+                                <div class="r2-value">0.85</div>
+                            </div>
+                            <div class="r2-change-percent">+29%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <i class="fas fa-check"></i>
+                    <span>Analysis supports Okun's Law validity for India (1998-2023)</span>
+                </div>
+                <div class="footer-right">
+                    <span>Page 10 of 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+function scaleSlides() {
+    const containers = document.querySelectorAll('.slide-container');
+    const windowWidth = window.innerWidth;
+    const targetWidth = 1280;
+    
+    // Calculate scale factor (max 1.0, so it doesn't scale up on large screens, only scales down on small ones)
+    // Add a small padding (e.g., 40px) to prevent it from touching the edges on small screens
+    const scale = Math.min(1, (windowWidth - 40) / targetWidth);
+    
+    containers.forEach(container => {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'top center';
+        
+        // Since CSS scale doesn't affect document flow size, we need to adjust the margin-bottom 
+        // so the next slide doesn't overlap. 720 is the fixed height of the slide.
+        const scaledHeight = 720 * scale;
+        const diff = scaledHeight - 720; 
+        
+        // Add 30px gap between slides
+        container.style.marginBottom = `${diff + 30}px`;
+    });
+}
+
+// Run on load and on resize
+window.addEventListener('resize', scaleSlides);
+document.addEventListener('DOMContentLoaded', scaleSlides);
+
+// Also run immediately just in case DOM is already loaded
+scaleSlides();
+</script>
+</body>
+
+
+</html>
